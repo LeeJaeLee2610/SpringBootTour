@@ -1,4 +1,4 @@
-package com.example.spring_postgre.service;
+package com.example.spring_postgre.services;
 
 import com.example.spring_postgre.model.Student;
 import com.example.spring_postgre.repositories.StudentRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class Services {
+public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
@@ -18,5 +18,18 @@ public class Services {
 
     public Student getStudentBySid(Integer sid){
         return studentRepository.findStudentBySid(sid);
+    }
+
+    public void addStudent(Student stu){
+//        studentRepository.addStudent(name, age, dob, khoa);
+        studentRepository.save(stu);
+    }
+
+    public void updateStudent(Student stu){
+        studentRepository.save(stu);
+    }
+
+    public void deleteStudent(Integer sid){
+        studentRepository.deleteById(sid);
     }
 }

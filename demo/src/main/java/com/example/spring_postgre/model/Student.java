@@ -1,6 +1,7 @@
 package com.example.spring_postgre.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "students")
@@ -14,20 +15,27 @@ public class Student {
     @Column(name = "age")
     private Integer age;
     @Column(name = "dob")
-    private String dob;
+    private Date dob;
     @Column(name = "khoa")
     private String khoa;
 
     public Student() {
     }
 
-    public Student(Integer sid, String name, Integer age, String dob, String khoa) {
-        this.sid = sid;
+    public Student(String name, Integer age, Date dob, String khoa) {
         this.name = name;
         this.age = age;
         this.dob = dob;
         this.khoa = khoa;
     }
+
+//    public Student(Integer sid, String name, Integer age, String dob, String khoa) {
+//        this.sid = sid;
+//        this.name = name;
+//        this.age = age;
+//        this.dob = dob;
+//        this.khoa = khoa;
+//    }
 
     public Integer getSid() {
         return sid;
@@ -53,11 +61,11 @@ public class Student {
         this.age = age;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
