@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.hrmproject.entity.FileInfo;
 import com.example.hrmproject.services.FilesStorageService;
@@ -33,8 +32,7 @@ public class FileController {
     public ResponseEntity<FileInfo> fileUpload(@RequestParam("file") MultipartFile multipartFile){
         try {
             filesStorageService.save(multipartFile);
-            String filename = multipartFile.getOriginalFilename();
-            return new ResponseEntity<>(new FileInfo("OK " + filename), HttpStatus.OK);
+            return new ResponseEntity<>(new FileInfo("OK"), HttpStatus.OK);
         } catch (Exception e) {
             // TODO: handle exception
             return new ResponseEntity<>(new FileInfo("Error"), HttpStatus.OK);
