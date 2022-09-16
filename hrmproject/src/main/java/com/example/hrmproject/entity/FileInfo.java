@@ -1,15 +1,25 @@
 package com.example.hrmproject.entity;
 
-public class File {
+public class FileInfo {
     private String fileName;
     private String message;
+    private String url;
 
-    public File() {
+    public FileInfo() {
     }
 
-    public File(String fileName, String message) {
+    public FileInfo(String fileName, String message) {
         this.fileName = fileName;
         this.message = message;
+    }
+
+    public FileInfo(String message) {
+        this.message = message;
+    }
+
+    public FileInfo(String fileName, String message, String url) {
+        this.fileName = fileName;
+        this.url = url;
     }
 
     public String getFileName() {
@@ -28,5 +38,11 @@ public class File {
         this.message = message;
     }
 
-    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }    
 }
