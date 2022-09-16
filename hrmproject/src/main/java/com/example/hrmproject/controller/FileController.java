@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,22 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.hrmproject.entity.FileInfo;
-import com.example.hrmproject.services.FileService;
 import com.example.hrmproject.services.FilesStorageService;
 
 @RestController
 @RequestMapping("/file")
 public class FileController {
     @Autowired
-    private FileService fileService;
-    @Autowired
     FilesStorageService filesStorageService;
-    @Value("${project.upload}")
-    private String path;
+
     @PostMapping("/upload")
     public ResponseEntity<FileInfo> fileUpload(@RequestParam("file") MultipartFile multipartFile){
-        String filename = this.fileService.uploadFile(path, multipartFile);
-        return new ResponseEntity<>(new FileInfo(filename, "OK"), HttpStatus.OK);
+        try {
+            filesStorageService.save(multipartFile);
+            String filename = multipartFile.getOriginalFilename();
+            return new ResponseEntity<>(new FileInfo("OK " + filename), HttpStatus.OK);
+        } catch (Exception e) {
+            // TODO: handle exception
+            return new ResponseEntity<>(new FileInfo("Error"), HttpStatus.OK);
+        }
     }
 
     @PostMapping("/uploads")

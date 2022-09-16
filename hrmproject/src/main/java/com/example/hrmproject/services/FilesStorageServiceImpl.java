@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -66,7 +67,12 @@ public class FilesStorageServiceImpl implements FilesStorageService{
     public void save(MultipartFile file) {
         // TODO Auto-generated method stub
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            String name = file.getOriginalFilename();
+        // fullpath
+            String randomID = UUID.randomUUID().toString();
+            String res = randomID.concat("_" + name);
+            String filePath = root + res;
+            Files.copy(file.getInputStream(), this.root.resolve(filePath));
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
