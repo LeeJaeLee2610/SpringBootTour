@@ -22,7 +22,6 @@ public class FilesStorageServiceImpl implements FilesStorageService{
     public void deleteAll() {
         // TODO Auto-generated method stub
         FileSystemUtils.deleteRecursively(root.toFile());
-        // System.out.println(root.toFile());
     }
 
     @Override
@@ -71,12 +70,12 @@ public class FilesStorageServiceImpl implements FilesStorageService{
         // fullpath
             String randomID = UUID.randomUUID().toString();
             String res = randomID.concat("_" + name);
-            String filePath = root + res;
-            Files.copy(file.getInputStream(), this.root.resolve(filePath));
+            Files.copy(file.getInputStream(), this.root.resolve(res));
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
         }
     }
+    
     
 }
