@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.hrmproject.model.DemoEmployee;
+import com.example.hrmproject.model.Role;
 import com.example.hrmproject.repositories.DemoEmployeeRepository;
+import com.example.hrmproject.repositories.RoleRepository;
 import com.example.hrmproject.services.FilesStorageService;
 
 @SpringBootApplication
@@ -16,6 +18,8 @@ public class HrmprojectApplication implements CommandLineRunner{
 	FilesStorageService filesStorageService;
 	@Autowired
 	private DemoEmployeeRepository demoEmployeeRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HrmprojectApplication.class, args);
@@ -28,6 +32,9 @@ public class HrmprojectApplication implements CommandLineRunner{
 		filesStorageService.init();
 		for(DemoEmployee de: demoEmployeeRepository.findAll()){
 			System.out.println(de.getId() + de.getName());
+		}
+		for(Role r: roleRepository.findAll()){
+			System.out.println(r.getRole_id() + " " + r.getRole_name());
 		}
 	}
 
