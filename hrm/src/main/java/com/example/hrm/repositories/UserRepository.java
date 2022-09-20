@@ -8,5 +8,4 @@ import com.example.hrm.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
     User findByUsername(String username);
-    User findByUid(Integer uid);
 }

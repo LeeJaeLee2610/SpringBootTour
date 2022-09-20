@@ -18,36 +18,34 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class JwtTokenProvider {
-    // Chỉ phía server biết
     private final String JWT_SECRET = "emcuong2610";
 
-    // Thời gian hiệu lực chuỗi JWT
     private final long JWT_EXPIRATION = 604800000L;
 
     // Tạo ra jwt từ thông tin user
-    public String generateToken(CustomUserDetails customUserDetails){
-        Date date = new Date();
-        Date expiryDate = new Date(date.getTime() + JWT_EXPIRATION);
+    public String generateToken(UserDetails userDetails) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + JWT_EXPIRATION);
+        // Tạo chuỗi json web token từ username của user.
         return Jwts.builder()
-                    .setSubject(Integer.toString(customUserDetails.getUser().getUid()))
-                    .setIssuedAt(date)
-                    .setExpiration(expiryDate)
-                    .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
-                    .compact();
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
+                .compact();
     }
 
-    //Lấy thông tin user từ jwt
-    public Integer getUidFromJWT(String token){
+    // Lấy thông tin user từ jwt
+    public String getUserNameFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(JWT_SECRET)
                 .parseClaimsJws(token)
                 .getBody();
 
-        return Integer.parseInt(claims.getSubject());
-
+        return claims.getSubject();
     }
 
-    public boolean validateToken(String authToken){
+    public boolean validateToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(authToken);
             return true;
@@ -62,4 +60,5 @@ public class JwtTokenProvider {
         }
         return false;
     }
+
 }
