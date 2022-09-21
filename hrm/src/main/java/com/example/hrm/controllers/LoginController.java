@@ -1,6 +1,5 @@
 package com.example.hrm.controllers;
 
-import com.example.hrm.jwt.JwtAuthenticationFilter;
 import com.example.hrm.jwt.JwtTokenProvider;
 import com.example.hrm.models.User;
 import lombok.AllArgsConstructor;
