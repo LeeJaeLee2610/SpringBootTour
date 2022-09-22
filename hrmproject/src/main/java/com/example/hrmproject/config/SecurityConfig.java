@@ -16,7 +16,6 @@ import com.example.hrmproject.consts.RolesConst;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
         UserDetails user = User.withDefaultPasswordEncoder()

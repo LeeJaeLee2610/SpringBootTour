@@ -1,4 +1,4 @@
-package com.example.hrmpro.model;
+package com.example.hrmpro.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

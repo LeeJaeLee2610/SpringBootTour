@@ -1,4 +1,4 @@
-package com.example.hrmpro.model;
+package com.example.hrmpro.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,7 @@ import lombok.Data;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private int role_id;
     @Column(name = "role_name")
     private String role_name;

@@ -8,13 +8,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.hrmpro.entity.User;
 import com.example.hrmpro.jwt.JwtTokenProvider;
-import com.example.hrmpro.model.User;
 import com.example.hrmpro.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -61,18 +60,5 @@ public class LoginController {
             log.error(e.getMessage());
             return "Error";
         }
-    }
-
-    @PostMapping("/signup")
-    public void save(@RequestBody User user){
-        System.out.println(user.getUsername());
-        String username = user.getUsername();
-        String password = passwordEncoder.encode(user.getPassword());
-        userRepository.addUser(username, password);
-    }
-
-    @GetMapping("/home")
-    public User home(){
-        return userRepository.findByUsername("ducbui");
     }
 }

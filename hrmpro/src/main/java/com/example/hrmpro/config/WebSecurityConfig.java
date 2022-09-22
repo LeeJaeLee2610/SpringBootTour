@@ -38,7 +38,7 @@ public class WebSecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()
+                .antMatchers("/login", "/signup", "/sendMail").permitAll()
                 .anyRequest().authenticated().and()
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
