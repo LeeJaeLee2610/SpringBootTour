@@ -1,4 +1,4 @@
-package com.example.hrmpro.services;
+package com.example.hrmpro.services.impl;
 
 import java.io.File;
 
@@ -15,6 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.example.hrmpro.model.EmailDetails;
+import com.example.hrmpro.services.EmailService;
 
 import lombok.extern.slf4j.Slf4j;
 

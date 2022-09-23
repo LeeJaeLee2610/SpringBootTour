@@ -23,8 +23,7 @@ public class EmailController {
     }
 
     @PostMapping("/sendMailWithAttachment")
-    public ResponseEntity<String> sendMailWithAttachment(
-        @RequestBody EmailDetails details)
+    public ResponseEntity<String> sendMailWithAttachment(@RequestBody EmailDetails details)
     {
         ResponseEntity<String> status = emailService.sendMailWithAttachment(details);
  
